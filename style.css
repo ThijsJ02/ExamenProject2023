@@ -1,6 +1,25 @@
+/* CSS Variables */
+:root {
+    --clr-primary: rgb(36, 36, 36);
+    --clr-secondary: rgb(235, 235, 235);
+    --clr-card: rgb(30, 30, 30);
+    --clr-btn: rgb(200, 200, 200);
+}
+
+/* Utility Class for light- darkmode switch */
+.light-mode {
+    --clr-primary: rgb(235, 235, 235);
+    --clr-secondary: rgb(36, 36, 36);
+    --clr-card: rgb(200, 200, 200);
+    --clr-btn: rgb(30, 30, 30);
+}
+
 /* Default Styling */
 body, html{
+    transition: .2s;
     color-scheme: light dark;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -31,7 +50,6 @@ a {
 }
 
 header {
-    background-color: red;
     height: 7.5%;
     width: 100%;
 }
@@ -43,19 +61,44 @@ main {
     width: 100%;
     height: 75%;
     overflow-y: hidden;
-    background-color: green;
+    overflow-x: hidden;
 }
 
 nav {
-    background-color: blue;
     height: 7.5%;
     width: 100%;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--clr-secondary);
+    padding: 15px;
+}
+
+.title-section {
+    justify-content: flex-start;
+    width: 90%;
+}
+
+.switch-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10%;
+}
+
+.switch-section > a {
+    font-size: 21px;
 }
 
 /* Nav Styling */
 nav {
     display: flex;
     flex-direction: row;
+    border-top: 1px solid var(--clr-secondary);
 }
 
 .nav-btn {
@@ -71,7 +114,7 @@ nav {
 }
 
 .converter-nav-btn {
-    border-inline: 1px solid white;
+    border-inline: 1px solid var(--clr-secondary);
 }
 
 /* Content Styling */
@@ -83,11 +126,117 @@ nav {
 
 .content-section {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 15px;
     height: 100%;
     width: 100%;
+
+}
+
+.content-section[closingleft] {
+    animation: slide-out-left 250ms forwards;
+}
+
+.content-section[closingright] {
+    animation: slide-out-right 250ms forwards;
+}
+
+.content-section[openingleft] {
+    animation: slide-left 250ms forwards;
+}
+
+.content-section[openingright] {
+    animation: slide-right 250ms forwards;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-out-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-out-right {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .active-content {
     display: flex;
+}
+
+/* Page content styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-card);
+    border: 1px solid var(--clr-secondary);
+    border-radius: 25px;
+    height: 50%;
+    width: 50%;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+    border-bottom: 1px solid var(--clr-secondary);
+}
+
+.card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    padding: 15px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+    border-top: 1px solid var(--clr-secondary);
+}
+
+.card-footer > button {
+    border: none;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--clr-btn);
+    color: var(--clr-primary);
 }

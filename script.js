@@ -1,3 +1,37 @@
+// Light- darkmode switch
+const modeSwitchBtn = document.getElementById("switchBtn");
+
+// Default and current mode, 0 = dark mode, 1 = light mode
+const defaultMode = 0;
+let currentMode;
+
+
+// function for checking current mode when the page loads
+function checkCurrentMode() {
+    currentMode = defaultMode;
+
+    if (currentMode == 0) {
+        modeSwitchBtn.classList.add("fa-sun");
+    }
+    else if (currentMode == 1) {
+        modeSwitchBtn.classList.add("fa-moon");
+    }
+}
+
+// Function for switching modes
+function switchMode() {
+    if (currentMode == 0) {
+        modeSwitchBtn.classList.replace("fa-sun", "fa-moon");
+        document.body.classList.toggle("light-mode");
+        currentMode = 1;
+    }
+    else if (currentMode == 1) {
+        modeSwitchBtn.classList.replace("fa-moon", "fa-sun");
+        document.body.classList.toggle("light-mode");
+        currentMode = 0;
+    }
+}
+
 // Content section variables
 const homePageSection = document.getElementById("homePage");
 const converterPageSection = document.getElementById("converterPage");
@@ -8,44 +42,115 @@ const infoPageSection = document.getElementById("infoPage");
 // Default is homePage, 0
 let currentActivePage = 0;
 
+// Bool to check if sliding animation is finished
+let maySwitch = true;
 
 // Function to handle the switching between pages
 function switchPage(pageToSwitchTo) {
-    if (pageToSwitchTo != currentActivePage) {
-        if (currentActivePage == 0) {
-            homePageSection.classList.toggle("active-content");
+    if (maySwitch) {
+        if (pageToSwitchTo != currentActivePage) {
+            maySwitch = false;
+            if (currentActivePage == 0) {
+                if (pageToSwitchTo == 1) {
+                    homePageSection.setAttribute('closingleft', "");
+                    homePageSection.addEventListener('animationend', () => {
+                        homePageSection.removeAttribute('closingleft');
+                        homePageSection.classList.toggle("active-content");
+                        converterPageSection.classList.toggle("active-content");
+                        converterPageSection.setAttribute('openingleft', "");
+                    }, { once: true })
 
-            if (pageToSwitchTo == 1) {
-                converterPageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
-            } 
-            else if (pageToSwitchTo == 2) {
-                infoPageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
+                    converterPageSection.addEventListener('animationend', () => {
+                        converterPageSection.removeAttribute('openingleft');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
+                else if (pageToSwitchTo == 2) {
+                    homePageSection.setAttribute('closingleft', "");
+                    homePageSection.addEventListener('animationend', () => {
+                        homePageSection.removeAttribute('closingleft');
+                        homePageSection.classList.toggle("active-content");
+                        infoPageSection.classList.toggle("active-content");
+                        infoPageSection.setAttribute('openingleft', "");
+                    }, { once: true })
+
+                    infoPageSection.addEventListener('animationend', () => {
+                        infoPageSection.removeAttribute('openingleft');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
             }
-        }
-        else if (currentActivePage == 1) {
-            converterPageSection.classList.toggle("active-content");
+            else if (currentActivePage == 1) {
+                if (pageToSwitchTo == 0) {
+                    converterPageSection.setAttribute('closingright', "");
+                    converterPageSection.addEventListener('animationend', () => {
+                        converterPageSection.removeAttribute('closingright');
+                        converterPageSection.classList.toggle("active-content");
+                        homePageSection.classList.toggle("active-content");
+                        homePageSection.setAttribute('openingright', "");
+                    }, { once: true })
 
-            if (pageToSwitchTo == 0) {
-                homePageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
-            } 
-            else if (pageToSwitchTo == 2) {
-                infoPageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
+                    homePageSection.addEventListener('animationend', () => {
+                        homePageSection.removeAttribute('openingright');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
+                else if (pageToSwitchTo == 2) {
+                    converterPageSection.setAttribute('closingleft', "");
+                    converterPageSection.addEventListener('animationend', () => {
+                        converterPageSection.removeAttribute('closingleft');
+                        converterPageSection.classList.toggle("active-content");
+                        infoPageSection.classList.toggle("active-content");
+                        infoPageSection.setAttribute('openingleft', "");
+                    }, { once: true })
+
+                    infoPageSection.addEventListener('animationend', () => {
+                        infoPageSection.removeAttribute('openingleft');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
             }
-        }
-        else if (currentActivePage == 2) {
-            infoPageSection.classList.toggle("active-content");
+            else if (currentActivePage == 2) {
+                if (pageToSwitchTo == 0) {
+                    infoPageSection.setAttribute('closingright', "");
+                    infoPageSection.addEventListener('animationend', () => {
+                        infoPageSection.removeAttribute('closingright');
+                        infoPageSection.classList.toggle("active-content");
+                        homePageSection.classList.toggle("active-content");
+                        homePageSection.setAttribute('openingright', "");
+                    }, { once: true })
 
-            if (pageToSwitchTo == 0) {
-                homePageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
-            } 
-            else if (pageToSwitchTo == 1) {
-                converterPageSection.classList.toggle("active-content");
-                currentActivePage = pageToSwitchTo;
+                    homePageSection.addEventListener('animationend', () => {
+                        homePageSection.removeAttribute('openingright');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
+                else if (pageToSwitchTo == 1) {
+                    infoPageSection.setAttribute('closingright', "");
+                    infoPageSection.addEventListener('animationend', () => {
+                        infoPageSection.removeAttribute('closingright');
+                        infoPageSection.classList.toggle("active-content");
+                        converterPageSection.classList.toggle("active-content");
+                        converterPageSection.setAttribute('openingright', "");
+                    }, { once: true })
+
+                    converterPageSection.addEventListener('animationend', () => {
+                        converterPageSection.removeAttribute('openingright');
+                        maySwitch = true;
+                    }, { once: true })
+
+                    currentActivePage = pageToSwitchTo;
+                }
             }
         }
     }
