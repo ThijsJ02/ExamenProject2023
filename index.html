@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,65 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
+
+<body onload="checkCurrentMode()">
     <div class="wrapper">
         <header>
-            <h2>header</h2>
+            <div class="title-section">
+                <h2>Gewicht Converter</h2>
+            </div>
+            <div class="switch-section">
+                <a onclick="switchMode()" id="switchBtn" class="fa-solid fa-sun"></a>
+            </div>
         </header>
         <main>
             <div class="content-wrapper">
                 <div id="homePage" class="content-section active-content">
-                    <h2>Home Page</h2>
+                    <div class="card" style="height: 60%; width: 80%;">
+                        <div class="card-header">
+                            <h2>Welkom!</h2>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ipsam quibusdam saepe sit
+                                pariatur error deleniti provident nisi tenetur illum commodi repellat incidunt similique
+                                dolor repudiandae recusandae, consectetur nesciunt expedita?</p>
+                        </div>
+                        <div class="card-footer">
+                            <button onclick="switchPage(1)">
+                                <h2>Naar Converter</h2>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div id="converterPage" class="content-section">
-                    <h2>Converter Page</h2>
+                    <div class="card" style="height: 60%; width: 80%;">
+                        <div class="card-header">
+                            <h2>Convert</h2>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ipsam quibusdam saepe sit
+                                pariatur error deleniti provident nisi tenetur illum commodi repellat incidunt similique
+                                dolor repudiandae recusandae, consectetur nesciunt expedita?</p>
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
+                    </div>
                 </div>
                 <div id="infoPage" class="content-section">
-                    <h2>Info Page</h2>
+                    <div class="card" style="height: 60%; width: 80%;">
+                        <div class="card-header">
+                            <h2>Info</h2>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ipsam quibusdam saepe sit
+                                pariatur error deleniti provident nisi tenetur illum commodi repellat incidunt similique
+                                dolor repudiandae recusandae, consectetur nesciunt expedita?</p>
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -39,4 +84,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
