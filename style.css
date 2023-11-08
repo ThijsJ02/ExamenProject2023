@@ -1,0 +1,93 @@
+/* Default Styling */
+body, html{
+    color-scheme: light dark;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Page Layout */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    background-color: red;
+    height: 7.5%;
+    width: 100%;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 75%;
+    overflow-y: hidden;
+    background-color: green;
+}
+
+nav {
+    background-color: blue;
+    height: 7.5%;
+    width: 100%;
+}
+
+/* Nav Styling */
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: calc(100% / 3);
+}
+
+.nav-btn > a {
+    font-size: 26px;
+}
+
+.converter-nav-btn {
+    border-inline: 1px solid white;
+}
+
+/* Content Styling */
+.content-wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.content-section {
+    display: none;
+    padding: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.active-content {
+    display: flex;
+}

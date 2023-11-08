@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0d45630dd0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h2>header</h2>
+        </header>
+        <main>
+            <div class="content-wrapper">
+                <div id="homePage" class="content-section active-content">
+                    <h2>Home Page</h2>
+                </div>
+                <div id="converterPage" class="content-section">
+                    <h2>Converter Page</h2>
+                </div>
+                <div id="infoPage" class="content-section">
+                    <h2>Info Page</h2>
+                </div>
+            </div>
+        </main>
+        <nav>
+            <div onclick="switchPage(0)" class="home-nav-btn nav-btn">
+                <a class="fa-solid fa-home"></a>
+            </div>
+            <div onclick="switchPage(1)" class="converter-nav-btn nav-btn">
+                <a class="fa-solid fa-calculator"></a>
+            </div>
+            <div onclick="switchPage(2)" class="info-nav-btn nav-btn">
+                <a class="fa-solid fa-info"></a>
+            </div>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
