@@ -18,14 +18,28 @@ function checkCurrentMode() {
     }
 }
 
+// Variables for background
+const _darkGrid = document.getElementById("darkGrid");
+const _lightGrid = document.getElementById("lightGrid");
+
 // Function for switching modes
 function switchMode() {
     if (currentMode == 0) {
+        // Going to lightmode
+        _darkGrid.style.order = 2;
+        _darkGrid.style.opacity = 0;
+        _lightGrid.style.order = 1;
+        _lightGrid.style.opacity = 1;
         modeSwitchBtn.classList.replace("fa-sun", "fa-moon");
         document.body.classList.toggle("light-mode");
         currentMode = 1;
     }
     else if (currentMode == 1) {
+        // Going to darkmode
+        _lightGrid.style.order = 2;
+        _lightGrid.style.opacity = 0;
+        _darkGrid.style.order = 1;
+        _darkGrid.style.opacity = 1;
         modeSwitchBtn.classList.replace("fa-moon", "fa-sun");
         document.body.classList.toggle("light-mode");
         currentMode = 0;
