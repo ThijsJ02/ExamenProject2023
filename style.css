@@ -4,6 +4,7 @@
     --clr-secondary: rgb(235, 235, 235);
     --clr-card: rgb(30, 30, 30);
     --clr-btn: rgb(200, 200, 200);
+    --clr-active: #008bfc;
 }
 
 /* Utility Class for light- darkmode switch */
@@ -12,6 +13,7 @@
     --clr-secondary: rgb(36, 36, 36);
     --clr-card: rgb(200, 200, 200);
     --clr-btn: rgb(30, 30, 30);
+    --clr-active: #0047fc;
 }
 
 /* Default Styling */
@@ -107,6 +109,7 @@ nav {
     align-items: center;
     height: 100%;
     width: calc(100% / 3);
+    transition: .2s;
 }
 
 .nav-btn > a {
@@ -115,6 +118,11 @@ nav {
 
 .converter-nav-btn {
     border-inline: 1px solid var(--clr-secondary);
+}
+
+.active {
+    transition: .2s;
+    color: var(--clr-active);
 }
 
 /* Content Styling */
@@ -239,4 +247,60 @@ nav {
     width: 100%;
     background-color: var(--clr-btn);
     color: var(--clr-primary);
+}
+
+/* Converter content styling */
+.converter-content {
+    width: 100%;
+}
+
+.converter-input-section,
+.converter-output-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.converter-output-section {
+    margin-block: 25px;
+}
+
+.converter-btn-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.converter-btn-section > button {
+    width: 40%;
+    height: 42px;
+    border: none;
+}
+
+#convertBtn {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #28910d;
+}
+
+#clearBtn {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #c90606;
+}
+
+input,
+select {
+    display: flex;
+    border-radius: 10px;
+    border: none;
+    height: 42px;
+    width: 80%;
+    margin-block: 5px;
+    background-color: var(--clr-btn);
+    color: var(--clr-primary);
+    font-size: 16px;
 }
