@@ -20,16 +20,30 @@
             </div>
         </header>
         <main>
+            <div class="background">
+                <div id="darkGrid" class="grid-img-parent">
+                    <img id="gridImg1" src="Weight_KG_Light.png" alt="">
+                    <img id="gridImg2" src="Weight_Gr_Light.png" alt="">
+                    <img id="gridImg3" src="Weight_Ons_Light.png" alt="">
+                    <img id="gridImg4" src="Weight_Ton_Light.png" alt="">
+                    <img id="gridImg5" src="Weight_Pond_Light.png" alt="">
+                </div>
+                <div id="lightGrid" class="grid-img-parent">
+                    <img id="gridImg1" src="Weight_KG_Dark.png" alt="">
+                    <img id="gridImg2" src="Weight_Gr_Dark.png" alt="">
+                    <img id="gridImg3" src="Weight_Ons_Dark.png" alt="">
+                    <img id="gridImg4" src="Weight_Ton_Dark.png" alt="">
+                    <img id="gridImg5" src="Weight_Pond_Dark.png" alt="">
+                </div>
+            </div>
             <div class="content-wrapper">
                 <div id="homePage" class="content-section active-content">
-                    <div class="card" style="height: 60%; width: 80%;">
+                    <div class="card" style="width: 80%; min-height: 40%;">
                         <div class="card-header">
                             <h2>Welkom!</h2>
                         </div>
                         <div class="card-content">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ipsam quibusdam saepe sit
-                                pariatur error deleniti provident nisi tenetur illum commodi repellat incidunt similique
-                                dolor repudiandae recusandae, consectetur nesciunt expedita?</p>
+                            <p>Met deze converter zet u gemakkelijk eenheden van gewichten om. <br></br> Uitleg is te vinden op de <a onclick="switchPage(2)">info-pagina</a>.</p>
                         </div>
                         <div class="card-footer">
                             <button onclick="switchPage(1)">
@@ -39,8 +53,8 @@
                     </div>
                 </div>
                 <div id="converterPage" class="content-section">
-                    <div class="card" style="height: 80%; width: 80%;">
-                        <div class="card-header" style="height: 10%;">
+                    <div class="card" style="height: auto; width: 80%;">
+                        <div class="card-header" style="height: 50px;">
                             <h2>Converter</h2>
                         </div>
                         <div class="card-content" style="height: 90%;">
