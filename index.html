@@ -43,7 +43,8 @@
                             <h2>Welkom!</h2>
                         </div>
                         <div class="card-content">
-                            <p>Met deze converter zet u gemakkelijk eenheden van gewichten om. <br></br> Uitleg is te vinden op de <a onclick="switchPage(2)">info-pagina</a>.</p>
+                            <p>Met deze converter zet u gemakkelijk eenheden van gewichten om. <br></br> Uitleg is te
+                                vinden op de <a onclick="switchPage(2)">info-pagina</a>.</p>
                         </div>
                         <div class="card-footer">
                             <button onclick="switchPage(1)">
@@ -62,21 +63,21 @@
                                 <div class="converter-input-section">
                                     <select id="inputUnit" name="Eenheid" id="">
                                         <option value="Default">Kies een invoer eenheid</option>
-                                        <option value="Kilo - KG">Kilo - KG</option>
-                                        <option value="Gram - G">Gram - G</option>
-                                        <option value="Ton">Ton</option>
+                                        <option value="KG">Kilogram - KG</option>
+                                        <option value="G">Gram - G</option>
+                                        <option value="Ton">Ton - T</option>
                                         <option value="Pond">Pond</option>
                                         <option value="Ons">Ons</option>
                                     </select>
                                     <input id="inputValue" placeholder="Invoer veld" type="number">
                                 </div>
-                                
+
                                 <div class="converter-output-section">
                                     <select id="outputUnit" name="Eenheid" id="">
                                         <option value="Default">Kies een uitvoer eenheid</option>
-                                        <option value="Kilo - KG">Kilo - KG</option>
-                                        <option value="Gram - G">Gram - G</option>
-                                        <option value="Ton">Ton</option>
+                                        <option value="KG">Kilogram - KG</option>
+                                        <option value="G">Gram - G</option>
+                                        <option value="Ton">Ton - T</option>
                                         <option value="Pond">Pond</option>
                                         <option value="Ons">Ons</option>
                                     </select>
@@ -84,25 +85,40 @@
                                 </div>
 
                                 <div class="converter-btn-section">
-                                    <button id="convertBtn">Convert</button>
-                                    <button id="clearBtn">Herstellen</button>
+                                    <button onclick="convert()" id="convertBtn">Convert</button>
+                                    <button onclick="resetFields()" id="clearBtn">Herstellen</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="infoPage" class="content-section">
-                    <div class="card" style="height: 60%; width: 80%;">
-                        <div class="card-header">
-                            <h2>Info</h2>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h2>Informatie</h2>
                         </div>
-                        <div class="card-content">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ipsam quibusdam saepe sit
-                                pariatur error deleniti provident nisi tenetur illum commodi repellat incidunt similique
-                                dolor repudiandae recusandae, consectetur nesciunt expedita?</p>
+                        <div class="info-content-card" style="height: 40%;">
+                            <div class="info-content-header">
+                                <h3>Over de App</h3>
+                            </div>
+                            <div class="info-content-wrapper">
+                                <p>Met deze app rekent u makkelijk en snel verschillende eenheden van geweicht om!</p>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            
+                        <div class="info-content-card" style="height: 60%;">
+                            <div class="info-content-header">
+                                <h3>Uitleg</h3>
+                            </div>
+                            <div class="info-content-wrapper">
+                                <p>Hoe gebruikt u de app:</p>
+                                <ul class="howto-list">
+                                    <li>U kiest een eenheid die u wilt omrekenen</li>
+                                    <li>U voert het gewicht in het invoer veld</li>
+                                    <li>U kiest de eenheid waar u naar wilt omrekenen</li>
+                                    <li>U klikt op de "Convert" knop om het gewicht om te rekenen</li>
+                                    <li>Hierna kunt u op het resultaat veld klikken om dit te kopieren</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
