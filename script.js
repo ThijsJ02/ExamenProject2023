@@ -192,3 +192,36 @@ function switchPage(pageToSwitchTo) {
         }
     }
 }
+
+const inputDropdownUnit = document.getElementById("inputUnit");
+const _inputField = document.getElementById("inputValue");
+const outputDropdownUnit = document.getElementById("outputUnit");
+const _outputField = document.getElementById("outputValue");
+
+const conversionFactors = {
+    "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "Pond": 2, "Ons": 10 },
+    "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "Pond": 1 / 500, "Ons": 0.01 },
+    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "Pond": 2000, "Ons": 10000 },
+    "Pond": { "KG": 0.5, "G": 0.01, "Ton": 0.0005, "Pond": 1, "Ons": 5 },
+    "Ons": { "KG": 0.1, "G": 100, "Ton": 0.0001, "Pond": 0.2, "Ons": 1 },
+};
+
+function convert() {
+    const inputUnitValue = inputDropdownUnit.options[inputDropdownUnit.selectedIndex].value;
+    const outputUnitValue = outputDropdownUnit.options[outputDropdownUnit.selectedIndex].value;
+
+    if (inputUnitValue === "Default" || outputUnitValue === "Default") {
+        alert("U moet doormiddel van het dropdown menu een eenheid kiezen die u wilt converteren. Daarna moet u bij het andere dropdown menu kiezen waar u naar toe wilt converteren. Deze velden kunnen niet standaard blijven.");
+        return;
+    }
+
+    const conversionFactor = conversionFactors[inputUnitValue][outputUnitValue];
+    _outputField.value = (_inputField.value * conversionFactor) + " " + outputUnitValue;
+}
+
+function resetFields() {
+    inputDropdownUnit.value = "Default";
+    outputDropdownUnit.value = "Default";
+    _inputField.value = "";
+    _outputField.value = "Resultaat";
+}
