@@ -382,3 +382,57 @@ select {
     color: var(--clr-primary);
     font-size: 16px;
 }
+
+/* Info content styling */
+.info-card {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: var(--clr-card);
+    border: 1px solid var(--clr-secondary);
+    border-radius: 25px;
+    height: 90%;
+    width: 90%;
+}
+
+.info-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid var(--clr-secondary);
+}
+
+.info-content-card {
+    display: flex;
+    flex-direction: column;
+    /* height: calc(100% / 2); */
+    width: 90%;
+    background-color: var(--clr-card);
+    border: 1px solid var(--clr-secondary);
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.info-content-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid var(--clr-secondary); 
+}
+
+.info-content-wrapper {
+    padding: 15px;
+}
+
+.howto-list{
+    padding: 0px 0px 0px 15px;
+}
+
+.howto-list > li {
+    margin-block: 15px;
+}
