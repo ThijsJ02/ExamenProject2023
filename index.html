@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/0d45630dd0.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Gewicht Converter</title>
 </head>
 
 <body onload="checkCurrentMode()">
@@ -19,26 +22,18 @@
                 <a onclick="switchMode()" id="switchBtn" class="fa-solid fa-sun"></a>
             </div>
         </header>
-        <main>
-            <div class="background">
-                <div id="darkGrid" class="grid-img-parent">
-                    <img id="gridImg1" src="Weight_KG_Light.png" alt="">
-                    <img id="gridImg2" src="Weight_Gr_Light.png" alt="">
-                    <img id="gridImg3" src="Weight_Ons_Light.png" alt="">
-                    <img id="gridImg4" src="Weight_Ton_Light.png" alt="">
-                    <img id="gridImg5" src="Weight_Pond_Light.png" alt="">
-                </div>
-                <div id="lightGrid" class="grid-img-parent">
-                    <img id="gridImg1" src="Weight_KG_Dark.png" alt="">
-                    <img id="gridImg2" src="Weight_Gr_Dark.png" alt="">
-                    <img id="gridImg3" src="Weight_Ons_Dark.png" alt="">
-                    <img id="gridImg4" src="Weight_Ton_Dark.png" alt="">
-                    <img id="gridImg5" src="Weight_Pond_Dark.png" alt="">
-                </div>
+        <div class="background">
+            <div id="darkModeBackground">
+                <img src="Background_Light.png" alt="">
             </div>
+            <div id="lightModeBackground" style="display: none;">
+                <img src="Background_Dark.png" alt="">
+            </div>
+        </div>
+        <main>
             <div class="content-wrapper">
                 <div id="homePage" class="content-section active-content">
-                    <div class="card" style="width: 80%; min-height: 40%;">
+                    <div class="card" style="width: 80%; min-height: 30%;">
                         <div class="card-header">
                             <h2>Welkom!</h2>
                         </div>
@@ -81,9 +76,9 @@
                                         <option value="Pond">Pond</option>
                                         <option value="Ons">Ons</option>
                                     </select>
-                                    <input readonly id="outputValue" type="text" value="Resultaat">
+                                    <input readonly onclick="copyField()" id="outputValue" type="text"
+                                        value="Resultaat">
                                 </div>
-
                                 <div class="converter-btn-section">
                                     <button onclick="convert()" id="convertBtn">Convert</button>
                                     <button onclick="resetFields()" id="clearBtn">Herstellen</button>
@@ -97,28 +92,15 @@
                         <div class="info-card-header">
                             <h2>Informatie</h2>
                         </div>
-                        <div class="info-content-card" style="height: 40%;">
-                            <div class="info-content-header">
-                                <h3>Over de App</h3>
-                            </div>
-                            <div class="info-content-wrapper">
-                                <p>Met deze app rekent u makkelijk en snel verschillende eenheden van geweicht om!</p>
-                            </div>
-                        </div>
-                        <div class="info-content-card" style="height: 60%;">
-                            <div class="info-content-header">
-                                <h3>Uitleg</h3>
-                            </div>
-                            <div class="info-content-wrapper">
-                                <p>Hoe gebruikt u de app:</p>
-                                <ul class="howto-list">
-                                    <li>U kiest een eenheid die u wilt omrekenen</li>
-                                    <li>U voert het gewicht in het invoer veld</li>
-                                    <li>U kiest de eenheid waar u naar wilt omrekenen</li>
-                                    <li>U klikt op de "Convert" knop om het gewicht om te rekenen</li>
-                                    <li>Hierna kunt u op het resultaat veld klikken om dit te kopieren</li>
-                                </ul>
-                            </div>
+                        <div class="info-content">
+                            <p>Hoe gebruikt u de app:</p>
+                            <ul class="howto-list">
+                                <li>U kiest een eenheid die u wilt omrekenen</li>
+                                <li>U voert het gewicht in het invoer veld</li>
+                                <li>U kiest de eenheid waar u naar wilt omrekenen</li>
+                                <li>U klikt op de "Convert" knop om het gewicht om te rekenen</li>
+                                <li>Hierna kunt u op het resultaat veld klikken om dit te kopieren</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
