@@ -56,8 +56,6 @@ a {
 
 header {
     height: 65px;
-    /* min-height: 55px; */
-    /* max-height: 65px; */
     width: 100%;
 }
 
@@ -73,8 +71,6 @@ main {
 
 nav {
     height: 65px;
-    /* min-height: 55px; */
-    /* max-height: 65px; */
     width: 100%;
 }
 
@@ -155,59 +151,31 @@ nav {
 
 }
 
-.content-section[closingleft] {
-    animation: slide-out-left 400ms forwards;
+.content-section[closing] {
+    animation: slide-out 400ms forwards;
 }
 
-.content-section[closingright] {
-    animation: slide-out-right 400ms forwards;
+.content-section[opening] {
+    animation: slide-in 400ms forwards;
 }
 
-.content-section[openingleft] {
-    animation: slide-left 400ms forwards;
-}
-
-.content-section[openingright] {
-    animation: slide-right 400ms forwards;
-}
-
-@keyframes slide-left {
+@keyframes slide-out {
     0% {
-        transform: translateX(100%);
+        transform: translateY(0%);
     }
 
     100% {
-        transform: translateX(0%);
+        transform: translateY(100%);
     }
 }
 
-@keyframes slide-right {
+@keyframes slide-in {
     0% {
-        transform: translateX(-100%);
+        transform: translateY(-100%);
     }
 
     100% {
-        transform: translateX(0%);
-    }
-}
-
-@keyframes slide-out-left {
-    0% {
-        transform: translateX(0%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes slide-out-right {
-    0% {
-        transform: translateX(0%);
-    }
-
-    100% {
-        transform: translateX(100%);
+        transform: translateY(0%);
     }
 }
 
@@ -226,6 +194,12 @@ nav {
     margin-top: 65px;
     height: calc(100% - 130px);
     width: 100%;
+}
+
+#darkModeBackground > img,
+#lightModeBackground > img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Page content styling */
@@ -253,7 +227,6 @@ nav {
 .card-content {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     margin-top: 15px;
     width: 100%;
     height: 70%;
