@@ -1,4 +1,4 @@
-// Light- darkmode switch
+// Light- darkmode switch variable
 const modeSwitchBtn = document.getElementById("switchBtn");
 
 // Default and current mode, 0 = dark mode, 1 = light mode
@@ -24,33 +24,27 @@ const _lightModeBackground = document.getElementById("lightModeBackground");
 
 // Function for switching modes
 function switchMode() {
-    if (currentMode == 0) {
-        // Going to lightmode
-        _darkModeBackground.style.display = "none";
-        _lightModeBackground.style.display = "block";
-        modeSwitchBtn.classList.replace("fa-sun", "fa-moon");
-        document.body.classList.toggle("light-mode");
-        currentMode = 1;
-    }
-    else if (currentMode == 1) {
-        // Going to darkmode
-        _darkModeBackground.style.display = "block";
-        _lightModeBackground.style.display = "none";
-        modeSwitchBtn.classList.replace("fa-moon", "fa-sun");
-        document.body.classList.toggle("light-mode");
-        currentMode = 0;
-    }
+    _darkModeBackground.style.display = currentMode === 0 ? "none" : "block";
+    _lightModeBackground.style.display = currentMode === 0 ? "block" : "none";
+    modeSwitchBtn.classList.toggle("fa-sun", currentMode === 0);
+    modeSwitchBtn.classList.toggle("fa-moon", currentMode === 1);
+    document.body.classList.toggle("light-mode");
+
+    currentMode = 1 - currentMode; // Toggle between 0 and 1
 }
 
-// Content section variables
-const homePageSection = document.getElementById("homePage");
-const converterPageSection = document.getElementById("converterPage");
-const infoPageSection = document.getElementById("infoPage");
+const pageSections = [
+    document.getElementById("homePage"),
+    document.getElementById("converterPage"),
+    document.getElementById("infoPage"),
+];
 
-// Navbar button variables
-const _homeNavBtn = document.getElementById("homeNavBtn");
-const _converterNavBtn = document.getElementById("converterNavBtn");
-const _infoNavBtn = document.getElementById("infoNavBtn");
+const navButtons = [
+    document.getElementById("homeNavBtn"),
+    document.getElementById("converterNavBtn"),
+    document.getElementById("infoNavBtn"),
+];
+
 
 // Current active page
 // 0 = homePage, 1 = converterPage, 2 = infoPage
@@ -60,161 +54,83 @@ let currentActivePage = 0;
 // Bool to check if sliding animation is finished
 let maySwitch = true;
 
-// Function to handle the switching between pages
+// Function for switching pages
 function switchPage(pageToSwitchTo) {
-    if (maySwitch) {
-        if (pageToSwitchTo != currentActivePage) {
-            maySwitch = false;
-            if (currentActivePage == 0) {
-                if (pageToSwitchTo == 1) {
-                    _homeNavBtn.classList.toggle("active");
-                    homePageSection.setAttribute('closingleft', "");
-                    homePageSection.addEventListener('animationend', () => {
-                        homePageSection.removeAttribute('closingleft');
-                        homePageSection.classList.toggle("active-content");
-                        converterPageSection.classList.toggle("active-content");
-                        converterPageSection.setAttribute('openingleft', "");
-                    }, { once: true })
+    if (maySwitch && pageToSwitchTo !== currentActivePage) {
+        maySwitch = false;
 
-                    _converterNavBtn.classList.toggle("active");
+        const currentSection = pageSections[currentActivePage];
+        const targetSection = pageSections[pageToSwitchTo];
+        const currentNavBtn = navButtons[currentActivePage];
+        const targetNavBtn = navButtons[pageToSwitchTo];
 
-                    converterPageSection.addEventListener('animationend', () => {
-                        converterPageSection.removeAttribute('openingleft');
-                        maySwitch = true;
-                    }, { once: true })
+        currentNavBtn.classList.toggle("active");
+        currentSection.setAttribute('closing', "");
+        currentSection.addEventListener('animationend', () => {
+            currentSection.removeAttribute('closing');
+            currentSection.classList.toggle("active-content");
+            targetSection.classList.toggle("active-content");
+            targetSection.setAttribute('opening', "");
+        }, { once: true })
 
-                    currentActivePage = pageToSwitchTo;
-                }
-                else if (pageToSwitchTo == 2) {
-                    _homeNavBtn.classList.toggle("active");
-                    homePageSection.setAttribute('closingleft', "");
-                    homePageSection.addEventListener('animationend', () => {
-                        homePageSection.removeAttribute('closingleft');
-                        homePageSection.classList.toggle("active-content");
-                        infoPageSection.classList.toggle("active-content");
-                        infoPageSection.setAttribute('openingleft', "");
-                    }, { once: true })
+        targetNavBtn.classList.toggle("active");
 
-                    _infoNavBtn.classList.toggle("active");
+        targetSection.addEventListener('animationend', () => {
+            targetSection.removeAttribute('opening');
+            maySwitch = true;
+        }, { once: true })
 
-                    infoPageSection.addEventListener('animationend', () => {
-                        infoPageSection.removeAttribute('openingleft');
-                        maySwitch = true;
-                    }, { once: true })
-
-                    currentActivePage = pageToSwitchTo;
-                }
-            }
-            else if (currentActivePage == 1) {
-                if (pageToSwitchTo == 0) {
-                    _converterNavBtn.classList.toggle("active");
-                    converterPageSection.setAttribute('closingright', "");
-                    converterPageSection.addEventListener('animationend', () => {
-                        converterPageSection.removeAttribute('closingright');
-                        converterPageSection.classList.toggle("active-content");
-                        homePageSection.classList.toggle("active-content");
-                        homePageSection.setAttribute('openingright', "");
-                    }, { once: true })
-
-                    _homeNavBtn.classList.toggle("active");
-
-                    homePageSection.addEventListener('animationend', () => {
-                        homePageSection.removeAttribute('openingright');
-                        maySwitch = true;
-                    }, { once: true })
-
-                    currentActivePage = pageToSwitchTo;
-                }
-                else if (pageToSwitchTo == 2) {
-                    _converterNavBtn.classList.toggle("active");
-                    converterPageSection.setAttribute('closingleft', "");
-                    converterPageSection.addEventListener('animationend', () => {
-                        converterPageSection.removeAttribute('closingleft');
-                        converterPageSection.classList.toggle("active-content");
-                        infoPageSection.classList.toggle("active-content");
-                        infoPageSection.setAttribute('openingleft', "");
-                    }, { once: true })
-
-                    _infoNavBtn.classList.toggle("active");
-
-                    infoPageSection.addEventListener('animationend', () => {
-                        infoPageSection.removeAttribute('openingleft');
-                        maySwitch = true;
-                    }, { once: true })
-
-                    currentActivePage = pageToSwitchTo;
-                }
-            }
-            else if (currentActivePage == 2) {
-                if (pageToSwitchTo == 0) {
-                    _infoNavBtn.classList.toggle("active");
-                    infoPageSection.setAttribute('closingright', "");
-                    infoPageSection.addEventListener('animationend', () => {
-                        infoPageSection.removeAttribute('closingright');
-                        infoPageSection.classList.toggle("active-content");
-                        homePageSection.classList.toggle("active-content");
-                        homePageSection.setAttribute('openingright', "");
-                    }, { once: true })
-
-                    _homeNavBtn.classList.toggle("active");
-
-                    homePageSection.addEventListener('animationend', () => {
-                        homePageSection.removeAttribute('openingright');
-                        maySwitch = true;
-                    }, { once: true })
-
-                    currentActivePage = pageToSwitchTo;
-                }
-                else if (pageToSwitchTo == 1) {
-                    _infoNavBtn.classList.toggle("active");
-                    infoPageSection.setAttribute('closingright', "");
-                    infoPageSection.addEventListener('animationend', () => {
-                        infoPageSection.removeAttribute('closingright');
-                        infoPageSection.classList.toggle("active-content");
-                        converterPageSection.classList.toggle("active-content");
-                        converterPageSection.setAttribute('openingright', "");
-                    }, { once: true })
-
-                    _converterNavBtn.classList.toggle("active");
-
-                    converterPageSection.addEventListener('animationend', () => {
-                        converterPageSection.removeAttribute('openingright');
-                        maySwitch = true;
-                    }, { once: true })
-
-                    currentActivePage = pageToSwitchTo;
-                }
-            }
-        }
+        currentActivePage = pageToSwitchTo;
     }
 }
 
+// Variables for the input and output fields
 const inputDropdownUnit = document.getElementById("inputUnit");
 const _inputField = document.getElementById("inputValue");
 const outputDropdownUnit = document.getElementById("outputUnit");
 const _outputField = document.getElementById("outputValue");
 
+// Conversion Factors for all conversions
 const conversionFactors = {
-    "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "Pond": 2, "Ons": 10 },
-    "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "Pond": 1 / 500, "Ons": 0.01 },
-    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "Pond": 2000, "Ons": 10000 },
-    "Pond": { "KG": 0.5, "G": 0.01, "Ton": 0.0005, "Pond": 1, "Ons": 5 },
-    "Ons": { "KG": 0.1, "G": 100, "Ton": 0.0001, "Pond": 0.2, "Ons": 1 },
+    "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "lbs": 2.20462, "oz": 35.274 },
+    "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "lbs": 0.00220462, "oz": 0.035274 },
+    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "lbs": 2204.62, "oz": 35274 },
+    "Pond": { "KG": 0.5, "G": 0.01, "Ton": 0.0005, "lbs": 1, "oz": 16 },
+    "Ons": { "KG": 0.1, "G": 100, "Ton": 0.0001, "lbs": 0.160357, "oz": 2.57204 },
 };
 
+// The function to convert the values
 function convert() {
     const inputUnitValue = inputDropdownUnit.options[inputDropdownUnit.selectedIndex].value;
     const outputUnitValue = outputDropdownUnit.options[outputDropdownUnit.selectedIndex].value;
 
+    // If the user left any dropdowns on default
     if (inputUnitValue === "Default" || outputUnitValue === "Default") {
         alert("U moet doormiddel van het dropdown menu een eenheid kiezen die u wilt converteren. Daarna moet u bij het andere dropdown menu kiezen waar u naar toe wilt converteren. Deze velden kunnen niet standaard blijven.");
         return;
     }
 
+    // Calculate the result of the conversion
     const conversionFactor = conversionFactors[inputUnitValue][outputUnitValue];
-    _outputField.value = (_inputField.value * conversionFactor) + " " + outputUnitValue;
+    var calcValue = _inputField.value * conversionFactor;
+
+    // Convert the result to a string to check the position of the decimal point
+    const calcValueString = calcValue.toString();
+
+    // Check if there are more than a certain amount of decimals
+    const decimalPosition = calcValueString.indexOf('.');
+    const numDecimals = decimalPosition === -1 ? 0 : calcValueString.length - decimalPosition - 1;
+
+    // Round the result to a certain amount of decimals only if there are more than a certain amount of decimals
+    if (numDecimals > 10) {
+        calcValue = parseFloat(calcValue.toFixed(10));
+    }
+
+    // Update the output field
+    _outputField.value = calcValue + " " + outputUnitValue;
 }
 
+// Function to reset fields to default
 function resetFields() {
     inputDropdownUnit.value = "Default";
     outputDropdownUnit.value = "Default";
@@ -222,14 +138,16 @@ function resetFields() {
     _outputField.value = "Resultaat";
 }
 
+// Function for copying the result when clicked on the field
 function copyField() {
     // Get the text field
     var copyText = document.getElementById("outputValue");
     if (copyText.value != "Resultaat") {
         // Select the text field
         copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
+        copyText.setSelectionRange(0, 99999);
 
+        // Remove the unit from the result so it copies just the number
         var textToClipboard = copyText.value.split(" ")[0];
 
         // Copy the text inside the text field
