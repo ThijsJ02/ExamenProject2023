@@ -212,7 +212,7 @@ nav {
     border: 1px solid var(--clr-secondary);
     border-radius: 25px;
     height: auto;
-    width: 50%;
+    min-width: 50%;
 }
 
 .card-header {
@@ -282,7 +282,8 @@ nav {
 }
 
 .converter-btn-section>button {
-    width: 40%;
+    min-width: 40%;
+    max-width: 60%;
     height: 42px;
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
@@ -323,7 +324,7 @@ select {
 .info-card {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    min-width: 85%;
     background-color: var(--clr-card);
     border: 1px solid var(--clr-secondary);
     border-radius: 25px;
