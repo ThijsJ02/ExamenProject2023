@@ -81,7 +81,7 @@ header {
     background-color: var(--clr-primary);
     border-bottom: 1px solid var(--clr-secondary);
     padding: 15px;
-    z-index: 1;
+    z-index: 3;
 }
 
 .title-section {
@@ -104,7 +104,7 @@ header {
 /* Nav Styling */
 nav {
     display: flex;
-    z-index: 1;
+    z-index: 3;
     flex-direction: row;
     background-color: var(--clr-primary);
     border-top: 1px solid var(--clr-secondary);
@@ -292,6 +292,7 @@ nav {
 }
 
 #convertBtn {
+    color: var(--clr-secondary);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: 1px solid var(--clr-secondary);
@@ -299,6 +300,7 @@ nav {
 }
 
 #clearBtn {
+    color: var(--clr-secondary);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border: 1px solid var(--clr-secondary);
@@ -328,6 +330,7 @@ select {
     background-color: var(--clr-card);
     border: 1px solid var(--clr-secondary);
     border-radius: 25px;
+    overflow-y: scroll;
 }
 
 .info-card-header {
@@ -356,7 +359,7 @@ li {
 .alert-wrapper {
     display: none;
     position: fixed;
-    z-index: 0;
+    z-index: 2;
     height: 80px;
     width: 100%;
     padding: 15px;
