@@ -5,7 +5,6 @@ const modeSwitchBtn = document.getElementById("switchBtn");
 const defaultMode = 0;
 let currentMode;
 
-
 // function for checking current mode when the page loads
 function checkCurrentMode() {
     currentMode = defaultMode;
@@ -92,12 +91,13 @@ const _outputField = document.getElementById("outputValue");
 
 // Conversion Factors for all conversions
 const conversionFactors = {
-    "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "lbs": 2.20462, "oz": 35.274 },
-    "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "lbs": 0.00220462, "oz": 0.035274 },
-    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "lbs": 2204.62, "oz": 35274 },
-    "Pond": { "KG": 0.5, "G": 0.01, "Ton": 0.0005, "lbs": 1, "oz": 16 },
-    "Ons": { "KG": 0.1, "G": 100, "Ton": 0.0001, "lbs": 0.160357, "oz": 2.57204 },
+    "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "lbs": 2.20462, "ounce": 35.274 },
+    "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "lbs": 0.00220462, "ounce": 0.035274 },
+    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "lbs": 2204.62, "ounce": 35274 },
+    "lbs": { "KG": 0.453592, "G": 453.592, "Ton": 0.000453592, "lbs": 1, "ounce": 16 },
+    "ounce": { "KG": 0.0283495, "G": 28.3495, "Ton": 2.835e-5, "lbs": 0.0625, "ounce": 1 },
 };
+
 
 // The function to convert the values
 function convert() {
@@ -107,6 +107,11 @@ function convert() {
     // If the user left any dropdowns on default
     if (inputUnitValue === "Default" || outputUnitValue === "Default") {
         alert("U moet doormiddel van het dropdown menu een eenheid kiezen die u wilt converteren. Daarna moet u bij het andere dropdown menu kiezen waar u naar toe wilt converteren. Deze velden kunnen niet standaard blijven.");
+        return;
+    }
+
+    if (inputUnitValue === outputUnitValue) {
+        _outputField.value = _inputField.value + " " + outputUnitValue;
         return;
     }
 
@@ -140,17 +145,27 @@ function resetFields() {
 
 // Function for copying the result when clicked on the field
 function copyField() {
-    // Get the text field
     var copyText = document.getElementById("outputValue");
-    if (copyText.value != "Resultaat") {
-        // Select the text field
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
 
-        // Remove the unit from the result so it copies just the number
-        var textToClipboard = copyText.value.split(" ")[0];
+    if (copyText.value !== "Resultaat") {
+        var tempTextArea = document.createElement("textarea");
+        tempTextArea.value = copyText.value.split(" ")[0];
 
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(textToClipboard);
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+
+        try {
+            navigator.clipboard.writeText(tempTextArea.value)
+                .then(() => {
+                    console.log("Text copied to clipboard");
+                })
+                .catch((err) => {
+                    console.error("Error copying to clipboard:", err);
+                });
+        } catch (err) {
+            console.error("Clipboard API not supported or other error:", err);
+        }
+
+        document.body.removeChild(tempTextArea);
     }
 }
