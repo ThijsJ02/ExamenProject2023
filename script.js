@@ -167,5 +167,17 @@ function copyField() {
         }
 
         document.body.removeChild(tempTextArea);
+        showAlert();
     }
+}
+
+const _alertBox = document.getElementById("alertBox");
+
+function showAlert() {
+    _alertBox.style.display = "flex";
+    _alertBox.setAttribute('open', "");
+    _alertBox.addEventListener('animationend', () => {
+        _alertBox.removeAttribute('open');
+        _alertBox.style.display = "none";
+    }, { once: true })
 }
