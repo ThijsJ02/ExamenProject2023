@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="https://kit.fontawesome.com/0d45630dd0.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,22 +11,24 @@
     <link rel="stylesheet" href="style.css">
     <title>Gewicht Converter</title>
 </head>
-
 <body onload="checkCurrentMode()">
+    <div class="landscape-warning">
+        <h2>Om deze applicatie goed te kunnen gebruiken moet de smartphone of tablet in een verticale houding staan!</h2>
+    </div>
     <div class="wrapper">
         <header>
             <div class="title-section">
                 <h2>Gewicht Converter</h2>
             </div>
-            <div class="switch-section">
-                <a onclick="switchMode()" id="switchBtn" class="fa-solid fa-sun"></a>
+            <div onclick="switchMode()" class="switch-section">
+                <a id="switchBtn" class="fa-solid fa-sun"></a>
             </div>
         </header>
         <div class="background">
             <div id="darkModeBackground">
                 <img src="Background_Light.png" alt="">
             </div>
-            <div id="lightModeBackground" style="display: none;">
+            <div id="lightModeBackground" class="inactive">
                 <img src="Background_Dark.png" alt="">
             </div>
         </div>
@@ -34,7 +36,7 @@
             <div id="alertBox" class="alert-wrapper">
                 <div class="alert-content">
                     <div class="alert-message">
-                        <p>Resultaat gekopieerd!</p>
+                        <p id="alertMessage"></p>
                     </div>
                 </div>
             </div>
@@ -45,8 +47,7 @@
                             <h2>Welkom!</h2>
                         </div>
                         <div class="card-content">
-                            <p>Met deze converter zet u gemakkelijk eenheden van gewichten om. <br></br> Uitleg is te
-                                vinden op de <a onclick="switchPage(2)">info-pagina</a>.</p>
+                            <p>Met deze converter zet je gemakkelijk eenheden van gewichten om. <br></br> Voor uitleg over de app, <a onclick="switchPage(2)">klik hier!</a>.</p>
                         </div>
                         <div class="card-footer">
                             <button onclick="switchPage(1)">
@@ -71,7 +72,7 @@
                                         <option value="lbs">Pound - lb</option>
                                         <option value="ounce">Ounce - oz</option>
                                     </select>
-                                    <input id="inputValue" placeholder="Invoer veld" type="number">
+                                    <input id="inputValue" placeholder="Invoerveld" type="numbers">
                                 </div>
 
                                 <div class="converter-output-section">
@@ -88,7 +89,7 @@
                                 </div>
                                 <div class="converter-btn-section">
                                     <button onclick="convert()" id="convertBtn">Convert</button>
-                                    <button onclick="resetFields()" id="clearBtn">Herstellen</button>
+                                    <button onclick="resetFields()" id="clearBtn">Herstel</button>
                                 </div>
                             </div>
                         </div>
@@ -100,14 +101,14 @@
                             <h2>Informatie</h2>
                         </div>
                         <div class="info-content">
-                            <p>Hoe gebruikt u de app:</p>
+                            <p>Hoe gebruikt je de app:</p>
                             <ul class="howto-list">
-                                <li>U kiest een eenheid die u wilt omrekenen</li>
-                                <li>U voert het gewicht in het invoer veld</li>
-                                <li>U kiest de eenheid waar u naar wilt omrekenen</li>
-                                <li>U klikt op de "Convert" knop om het gewicht om te rekenen</li>
-                                <li>Hierna kunt u op het resultaat veld klikken om dit te kopieren</li>
-                                <li>Let op! U kunt een punt ( . ) gebruiken om decimalen aan te geven</li>
+                                <li>Kies een eenheid die je wilt omrekenen</li>
+                                <li>Voer het gewicht in het invoerveld</li>
+                                <li>Kies de eenheid waar je naar wilt omrekenen</li>
+                                <li>Klik op de "Convert" knop om het gewicht om te rekenen</li>
+                                <li>Als je het resultaat wilt kopiëren, klik dan op het resultaatveld</li>
+                                <li>Let op! je kunt een punt ( . ) gebruiken om decimalen aan te geven</li>
                             </ul>
                         </div>
                     </div>

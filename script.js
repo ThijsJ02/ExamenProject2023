@@ -8,14 +8,9 @@ let currentMode;
 // function for checking current mode when the page loads
 function checkCurrentMode() {
     currentMode = defaultMode;
-
-    if (currentMode == 0) {
-        modeSwitchBtn.classList.add("fa-sun");
-    }
-    else if (currentMode == 1) {
-        modeSwitchBtn.classList.add("fa-moon");
-    }
 }
+
+// alert("Voor de beste ervaring tijdens het gebruik van de website moet het device in portraitmode (verticale stand) staan");
 
 // Variables for background
 const _darkModeBackground = document.getElementById("darkModeBackground");
@@ -23,13 +18,24 @@ const _lightModeBackground = document.getElementById("lightModeBackground");
 
 // Function for switching modes
 function switchMode() {
-    _darkModeBackground.style.display = currentMode === 0 ? "none" : "block";
-    _lightModeBackground.style.display = currentMode === 0 ? "block" : "none";
-    modeSwitchBtn.classList.toggle("fa-sun", currentMode === 0);
-    modeSwitchBtn.classList.toggle("fa-moon", currentMode === 1);
-    document.body.classList.toggle("light-mode");
+    if (currentMode == 0) {
+        _darkModeBackground.classList.toggle("inactive");
+        _lightModeBackground.classList.toggle("inactive");
+        modeSwitchBtn.classList.toggle("fa-sun");
+        modeSwitchBtn.classList.toggle("fa-moon");
+        document.body.classList.toggle("light-mode");
 
-    currentMode = 1 - currentMode; // Toggle between 0 and 1
+        currentMode == 1;
+    }
+    else if (currentMode == 1) {
+        _darkModeBackground.classList.toggle("inactive");
+        _lightModeBackground.classList.toggle("inactive");
+        modeSwitchBtn.classList.toggle("fa-sun");
+        modeSwitchBtn.classList.toggle("fa-moon");
+        document.body.classList.toggle("light-mode");
+
+        currentMode == 0;
+    }
 }
 
 const pageSections = [
@@ -93,7 +99,7 @@ const _outputField = document.getElementById("outputValue");
 const conversionFactors = {
     "KG": { "KG": 1, "G": 1000, "Ton": 0.001, "lbs": 2.20462, "ounce": 35.274 },
     "G": { "KG": 0.001, "G": 1, "Ton": 0.000001, "lbs": 0.00220462, "ounce": 0.035274 },
-    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "lbs": 2204.62, "ounce": 35274 },
+    "Ton": { "KG": 1000, "G": 1000000, "Ton": 1, "lbs": 2204.62, "ounce": 35270 },
     "lbs": { "KG": 0.453592, "G": 453.592, "Ton": 0.000453592, "lbs": 1, "ounce": 16 },
     "ounce": { "KG": 0.0283495, "G": 28.3495, "Ton": 2.835e-5, "lbs": 0.0625, "ounce": 1 },
 };
@@ -103,6 +109,18 @@ const conversionFactors = {
 function convert() {
     const inputUnitValue = inputDropdownUnit.options[inputDropdownUnit.selectedIndex].value;
     const outputUnitValue = outputDropdownUnit.options[outputDropdownUnit.selectedIndex].value;
+
+    var containsOnlyNumbers = /^\d+$/.test(_inputField.value);
+    if (!containsOnlyNumbers) {
+        showAlert(2);
+        return;
+    }
+
+    var numericValue = Number(_inputField.value);
+    if (numericValue > Number.MAX_SAFE_INTEGER) {
+        showAlert(3);
+        return;
+    }
 
     // If the user left any dropdowns on default
     if (inputUnitValue === "Default" || outputUnitValue === "Default") {
@@ -155,25 +173,48 @@ function copyField() {
         tempTextArea.select();
 
         try {
+            // Use Clipboard API if available
             navigator.clipboard.writeText(tempTextArea.value)
                 .then(() => {
                     console.log("Text copied to clipboard");
+                    showAlert(0);
                 })
-                .catch((err) => {
-                    console.error("Error copying to clipboard:", err);
+                .catch(() => {
+                    // Fallback to document.execCommand if Clipboard API is not supported
+                    if (document.execCommand('copy')) {
+                        console.log("Text copied to clipboard (fallback)");
+                        showAlert(0);
+                    } else {
+                        console.error("Copy to clipboard failed");
+                        showAlert(1);
+                    }
                 });
         } catch (err) {
-            console.error("Clipboard API not supported or other error:", err);
+            console.error("Clipboard API and execCommand not supported:", err);
+            showAlert(1);
+        } finally {
+            document.body.removeChild(tempTextArea);
         }
-
-        document.body.removeChild(tempTextArea);
-        showAlert();
     }
 }
 
-const _alertBox = document.getElementById("alertBox");
 
-function showAlert() {
+const _alertBox = document.getElementById("alertBox");
+const _alertMessage = document.getElementById("alertMessage");
+
+function showAlert(status) {
+    if (status == 0) {
+        _alertMessage.innerHTML = "Resultaat Gekopieërd!";
+    }
+    else if (status == 1) {
+        _alertMessage.innerHTML = "Er is iets misgegaan tijdens het kopieëren!";
+    }
+    else if (status == 2) {
+        _alertMessage.innerHTML = "Het invoerveld mag alleen nummers bevatten!";
+    }
+    else if (status == 3) {
+        _alertMessage.innerHTML = "Het invoerveld bevat geen geldige waarde!";
+    }
     _alertBox.style.display = "flex";
     _alertBox.setAttribute('open', "");
     _alertBox.addEventListener('animationend', () => {
